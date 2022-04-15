@@ -43,20 +43,7 @@ p{
 }
 
 .greenButton.clicked{
-    animation: pressgreen 1000ms;
-    animation-fill-mode: forwards;
-}
-
-@keyframes pressgreen {
-    0%{
-        background-color: green;
-    }
-    99.9%{
-        background-color: green;
-    }
-    100%{
-        background-color: lightgreen;
-    }
+    background-color: green;
 }
 
 .blueButton{
@@ -68,20 +55,7 @@ p{
 }
 
 .blueButton.clicked{
-    animation: pressblue 1000ms;
-    animation-fill-mode: forwards;
-}
-
-@keyframes pressblue {
-    0%{
-        background-color: #0345fc;
-    }
-    99.9%{
-        background-color: #0345fc;
-    }
-    100%{
-        background-color: lightblue;
-    }
+    background-color: #0345fc;
 }
 
 .redButton{
@@ -91,22 +65,8 @@ p{
     width: var(--button-width);
     height: var(--button-height);
 }
-
 .redButton.clicked{
-    animation: pressred 1000ms;
-    animation-fill-mode: forwards;
-}
-
-@keyframes pressred {
-    0%{
-        background-color: #d4242d;
-    }
-    99.9%{
-        background-color: #d4242d;
-    }
-    100%{
-        background-color: lightcoral;
-    }
+    background-color: #d4242d;
 }
 
 .yellowButton{
@@ -116,23 +76,10 @@ p{
     width: var(--button-width);
     height: var(--button-height);
 }
-
 .yellowButton.clicked{
-    animation: pressyellow 1000ms;
-    animation-fill-mode: forwards;
+    background-color: yellow;
 }
 
-@keyframes pressyellow {
-    0%{
-        background-color: yellow;
-    }
-    99.9%{
-        background-color: yellow;
-    }
-    100%{
-        background-color: #fffebd;
-    }
-}
 /*
 setTimeout(() => {
     switch(pattern[k]) {
