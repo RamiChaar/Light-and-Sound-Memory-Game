@@ -1,0 +1,157 @@
+:root{
+    --button-width: 15vw;
+    --button-height: var(--button-width);
+}
+
+body {
+    background-color: #3A606E;
+    font-family: Arial;
+}
+
+h1{
+    margin-top: 50px;
+    margin-left: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+p{
+    margin-left: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.startButton {
+    border: none;
+    background-color: white;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-bottom: 120px;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.greenButton{
+    margin-left: 20px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 5px;
+    width: var(--button-width);
+    height: var(--button-height);
+}
+
+.greenButton.clicked{
+    animation: pressgreen 1000ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pressgreen {
+    0%{
+        background-color: green;
+    }
+    99.9%{
+        background-color: green;
+    }
+    100%{
+        background-color: lightgreen;
+    }
+}
+
+.blueButton{
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    width: var(--button-width);
+    height: var(--button-height);
+}
+
+.blueButton.clicked{
+    animation: pressblue 1000ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pressblue {
+    0%{
+        background-color: #0345fc;
+    }
+    99.9%{
+        background-color: #0345fc;
+    }
+    100%{
+        background-color: lightblue;
+    }
+}
+
+.redButton{
+    background-color: lightcoral;
+    border: none;
+    border-radius: 5px;
+    width: var(--button-width);
+    height: var(--button-height);
+}
+
+.redButton.clicked{
+    animation: pressred 1000ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pressred {
+    0%{
+        background-color: #d4242d;
+    }
+    99.9%{
+        background-color: #d4242d;
+    }
+    100%{
+        background-color: lightcoral;
+    }
+}
+
+.yellowButton{
+    background-color: #fffebd;
+    border: none;
+    border-radius: 5px;
+    width: var(--button-width);
+    height: var(--button-height);
+}
+
+.yellowButton.clicked{
+    animation: pressyellow 1000ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pressyellow {
+    0%{
+        background-color: yellow;
+    }
+    99.9%{
+        background-color: yellow;
+    }
+    100%{
+        background-color: #fffebd;
+    }
+}
+/*
+setTimeout(() => {
+    switch(pattern[k]) {
+    case 1:
+        greenbtn.classList.toggle("clicked");
+        timeout = setTimeout(() => {greenbtn.classList.toggle("clicked");}, 1000);
+        break;
+    case 2:
+        bluebtn.classList.toggle("clicked");
+        timeout = setTimeout(() => {bluebtn.classList.toggle("clicked");}, 1000);
+        break;
+    case 3:
+        redbtn.classList.toggle("clicked");
+        timeout = setTimeout(() => {redbtn.classList.toggle("clicked");}, 1000);
+        break;
+    default:
+        yellowbtn.classList.toggle("clicked");
+        timeout = setTimeout(() => {yellowbtn.classList.toggle("clicked");}, 1000);
+        break;
+    }
+}, 1500*k);
+*/
