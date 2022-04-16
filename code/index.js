@@ -3,9 +3,16 @@ const greenbtn = document.querySelector("[greenbtn]");
 const bluebtn = document.querySelector("[bluebtn]");
 const redbtn = document.querySelector("[redbtn]");
 const yellowbtn = document.querySelector("[yellowbtn]");
+
+const maxLevel = 8;
+
+const pressTime = 500;
+const gapTime = 200;
+const waitTime = 500;
+
 let timeouts = [];
 let pattern = [];
-let level = 1;
+let currLevel = 1;
 let listen = [];
 let playing = false;
 let reciting = false;
@@ -13,9 +20,6 @@ let green = false;
 let blue = false;
 let red = false;
 let yellow = false;
-
-const pressTime = 1000;
-const gapTime = 500;
 
 let context = new AudioContext();
 let gainNode = context.createGain();
@@ -40,10 +44,11 @@ function startGame() {
 }
 
 function stopGame() {
+    oscillator.stop();
+    context = new AudioContext();
     for(let i = 0; i < timeouts.length; i++){
         clearTimeout(timeouts[i]);
     }
-    gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
     if(green){
         greenbtn.classList.toggle("clicked");
         green = false;
@@ -63,24 +68,46 @@ function stopGame() {
     startbtn.textContent = "Start";
     reciting = false;
     playing = false;
+    currLevel = 1;
 }
 
 function fill(pattern) {
-    for (let i = 0; i < 8; i++) { 
+    for (let i = 0; i < maxLevel; i++) { 
         pattern.push(Math.floor(Math.random() * 4)+1);
     }
 }
 
 function startSequence() {
-    let delay = 500;
+    listen.length = 0;
+    let delay = waitTime;
     reciting = true;
-    level = 8;
-    for(let i = 0; i < level; i++){
+    for(let i = 0; i < currLevel; i++){
         timeouts.push(setTimeout(pressButton, delay, i));
         timeouts.push(setTimeout(releaseButton, delay+pressTime, i));
         delay += pressTime;
         delay += gapTime;
     }
+}
+
+function pressed(k) {
+    listen.push(k);
+    
+    for(let i = 0; i < listen.length; i++){
+        if(listen[i] != pattern[i]){
+            alert("You Lost, Game Over!");
+            stopGame();
+            return;
+        }
+    }
+    if(currLevel == listen.length){
+        if(currLevel < maxLevel){
+            currLevel++;
+            startSequence();
+            return;
+        }
+        alert("Congradulations, You win!");
+        stopGame();
+    } 
 }
 
 function pressButton(k) {
@@ -132,7 +159,7 @@ function releaseButton(k) {
                 break;
         }
     }
-    if(k == level-1){
+    if(k == currLevel-1){
         reciting = false;
     }
 }
@@ -145,7 +172,7 @@ function playPress(frequency) {
     oscillator.connect(gainNode);
     gainNode.connect(context.destination);
     oscillator.start(0);
-  };
+}
 
 greenbtn.addEventListener("mousedown", () => {
     if(!reciting){
@@ -157,7 +184,10 @@ greenbtn.addEventListener("mouseup", () => {
     if(!reciting){
         greenbtn.classList.toggle("clicked");
         gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        listen.push(1);
+        if(playing){
+            pressed(1);
+        }
+        console.log(listen);
     }
 });
 
@@ -171,7 +201,10 @@ bluebtn.addEventListener("mouseup", () => {
     if(!reciting){
         bluebtn.classList.toggle("clicked");
         gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        listen.push(2);
+        if(playing){
+            pressed(2);
+        }
+        console.log(listen);
     }
 });
 
@@ -185,7 +218,10 @@ redbtn.addEventListener("mouseup", () => {
     if(!reciting){
         redbtn.classList.toggle("clicked");
         gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        listen.push(3);
+        if(playing){
+            pressed(3);
+        }
+        console.log(listen);
     }
 });
 
@@ -199,29 +235,9 @@ yellowbtn.addEventListener("mouseup", () => {
     if(!reciting){
         yellowbtn.classList.toggle("clicked");
         gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        listen.push(4);
+        if(playing){
+            pressed(4);
+        }
+        console.log(listen);
     }
 });
-
-// pattern.length = 0;
-// for (let i = 1; i <= 8; i++) { 
-//     pattern.push(Math.floor(Math.random() * 4)+1);
-    
-// }
-// console.log(pattern);
-// for(let k = 0; k<pattern.length; k++){
-//     switch(pattern[k]) {
-//         case 1:
-//             greenbtn.classList.toggle("clicked");
-//             break;
-//         case 2:
-//             bluebtn.classList.toggle("clicked");
-//             break;
-//         case 3:
-//             redbtn.classList.toggle("clicked");
-//             break;
-//         default:
-//             yellowbtn.classList.toggle("clicked");
-//             break;
-//     }
-// }
