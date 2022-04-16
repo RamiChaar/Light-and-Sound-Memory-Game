@@ -4,7 +4,7 @@ const bluebtn = document.querySelector("[bluebtn]");
 const redbtn = document.querySelector("[redbtn]");
 const yellowbtn = document.querySelector("[yellowbtn]");
 
-const maxLevel = 2;
+const maxLevel = 8;
 
 const pressTime = 500;
 const gapTime = 200;
@@ -15,7 +15,7 @@ let pattern = [];
 let currLevel = 1;
 let listen = [];
 let playing = false;
-let reciting = false;
+let reciting = true;
 let green = false;
 let blue = false;
 let red = false;
@@ -66,7 +66,7 @@ function stopGame() {
         yellow = false;
     }
     startbtn.textContent = "Start";
-    reciting = false;
+    reciting = true;
     playing = false;
     currLevel = 1;
 }
