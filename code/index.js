@@ -4,7 +4,7 @@ const bluebtn = document.querySelector("[bluebtn]");
 const redbtn = document.querySelector("[redbtn]");
 const yellowbtn = document.querySelector("[yellowbtn]");
 
-const maxLevel = 8;
+const maxLevel = 2;
 
 const pressTime = 500;
 const gapTime = 200;
@@ -91,7 +91,19 @@ function startSequence() {
 
 function pressed(k) {
     listen.push(k);
-    
+    console.log(listen);
+    if(green){
+        greenbtn.classList.toggle("clicked");
+    }
+    if(blue){
+        bluebtn.classList.toggle("clicked");
+    }
+    if(red){
+        redbtn.classList.toggle("clicked");
+    }
+    if(yellow){
+        yellowbtn.classList.toggle("clicked");
+    }
     for(let i = 0; i < listen.length; i++){
         if(listen[i] != pattern[i]){
             alert("You Lost, Game Over!");
@@ -174,70 +186,65 @@ function playPress(frequency) {
     oscillator.start(0);
 }
 
+addEventListener("mouseup", () => {
+    if(!reciting){
+        if(green){
+            greenbtn.classList.toggle("clicked");
+            gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+            green = false
+            if(playing){
+                pressed(1);
+            }
+        } else if(blue){
+            bluebtn.classList.toggle("clicked");
+            gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+            blue = false;
+            if(playing){
+                pressed(2);
+            }
+        } else if(red) {
+            redbtn.classList.toggle("clicked");
+            gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+            red = false
+            if(playing){
+                pressed(3);
+            }
+        } else if(yellow) {
+            yellowbtn.classList.toggle("clicked");
+            gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+            yellow = false;
+            if(playing){
+                pressed(4);
+            }
+        }
+    }
+});
+
 greenbtn.addEventListener("mousedown", () => {
     if(!reciting){
         greenbtn.classList.toggle("clicked");
+        green = true;
         playPress(150);
     }
 });
-greenbtn.addEventListener("mouseup", () => {
-    if(!reciting){
-        greenbtn.classList.toggle("clicked");
-        gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        if(playing){
-            pressed(1);
-        }
-        console.log(listen);
-    }
-});
-
 bluebtn.addEventListener("mousedown", () => {
     if(!reciting){
-        bluebtn.classList.toggle("clicked")
+        bluebtn.classList.toggle("clicked");
+        blue = true;
         playPress(175);
     }
 });
-bluebtn.addEventListener("mouseup", () => {
-    if(!reciting){
-        bluebtn.classList.toggle("clicked");
-        gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        if(playing){
-            pressed(2);
-        }
-        console.log(listen);
-    }
-});
-
 redbtn.addEventListener("mousedown", () => {
     if(!reciting){
         redbtn.classList.toggle("clicked");
+        red = true;
         playPress(200);
     }
 });
-redbtn.addEventListener("mouseup", () => {
-    if(!reciting){
-        redbtn.classList.toggle("clicked");
-        gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        if(playing){
-            pressed(3);
-        }
-        console.log(listen);
-    }
-});
-
 yellowbtn.addEventListener("mousedown", () => {
     if(!reciting){
         yellowbtn.classList.toggle("clicked");
+        yellow = true;
         playPress(225);
-    }
-});
-yellowbtn.addEventListener("mouseup", () => {
-    if(!reciting){
-        yellowbtn.classList.toggle("clicked");
-        gainNode.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
-        if(playing){
-            pressed(4);
-        }
-        console.log(listen);
     }
 });
