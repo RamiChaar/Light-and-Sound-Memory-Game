@@ -1,4 +1,5 @@
 :root{
+    /* constants for button dimensions */
     --button-width: 15vw;
     --button-height: var(--button-width);
 }
@@ -41,7 +42,6 @@ p{
     width: var(--button-width);
     height: var(--button-height);
 }
-
 .greenButton.clicked{
     background-color: green;
 }
@@ -53,7 +53,6 @@ p{
     width: var(--button-width);
     height: var(--button-height);
 }
-
 .blueButton.clicked{
     background-color: #0345fc;
 }
@@ -79,26 +78,3 @@ p{
 .yellowButton.clicked{
     background-color: yellow;
 }
-
-/*
-setTimeout(() => {
-    switch(pattern[k]) {
-    case 1:
-        greenbtn.classList.toggle("clicked");
-        timeout = setTimeout(() => {greenbtn.classList.toggle("clicked");}, 1000);
-        break;
-    case 2:
-        bluebtn.classList.toggle("clicked");
-        timeout = setTimeout(() => {bluebtn.classList.toggle("clicked");}, 1000);
-        break;
-    case 3:
-        redbtn.classList.toggle("clicked");
-        timeout = setTimeout(() => {redbtn.classList.toggle("clicked");}, 1000);
-        break;
-    default:
-        yellowbtn.classList.toggle("clicked");
-        timeout = setTimeout(() => {yellowbtn.classList.toggle("clicked");}, 1000);
-        break;
-    }
-}, 1500*k);
-*/
