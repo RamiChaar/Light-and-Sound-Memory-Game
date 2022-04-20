@@ -1,5 +1,7 @@
 :root{
     /* constants for button dimensions */
+    --difficulty-height: 5.5vw;
+    --difficulty-width: 11vw;
     --button-width: 15vw;
     --button-height: var(--button-width);
 }
@@ -10,37 +12,75 @@ body {
 }
 
 h1{
-    margin-top: 50px;
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    width: 16em;
     font-size: 40px;
     font-weight: bold;
     color: white;
 }
 
-p{
-    margin-left: 20px;
-    font-size: 20px;
-    color: white;
-}
-
-.startButton {
+.easyButton {
     border: none;
     background-color: white;
     font-size: 14px;
-    margin-left: 20px;
-    margin-bottom: 120px;
-    width: 60px;
-    height: 30px;
+    width: var(--difficulty-width);
+    height: var(--difficulty-height);
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+.easyButton.clicked {
+    background-color: lightgray;
+}
+
+.mediumButton {
+    border: none;
+    background-color: white;
+    font-size: 14px;
+    width: var(--difficulty-width);
+    height: var(--difficulty-height);
     border-radius: 5px;
 }
 
+.mediumButton.clicked {
+    background-color: lightgray;
+}
+
+.hardButton {
+    border: none;
+    background-color: white;
+    font-size: 14px;
+    width: var(--difficulty-width);
+    height: var(--difficulty-height);
+    border-radius: 5px;
+}
+
+.hardButton.clicked {
+    background-color: lightgray;
+}
+
+.crazyButton {
+    border: none;
+    background-color: white;
+    font-size: 14px;
+    width: var(--difficulty-width);
+    height: var(--difficulty-height);
+    border-radius: 5px;
+}
+
+.crazyButton.clicked {
+    background-color: lightgray;
+}
+
 .greenButton{
-    margin-left: 20px;
     background-color: lightgreen;
     border: none;
     border-radius: 5px;
     width: var(--button-width);
     height: var(--button-height);
+    margin-top: 100px;
 }
 .greenButton.clicked{
     background-color: green;
@@ -58,6 +98,7 @@ p{
 }
 
 .redButton{
+    margin-top: 3px;
     background-color: lightcoral;
     border: none;
     border-radius: 5px;

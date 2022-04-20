@@ -1,14 +1,17 @@
-const startbtn = document.querySelector("[startbtn]");
+const easybtn = document.querySelector("[easyButton]");
+const mediumbtn = document.querySelector("[mediumButton]");
+const hardbtn = document.querySelector("[hardButton]");
+const crazybtn = document.querySelector("[crazyButton]");
 const greenbtn = document.querySelector("[greenbtn]");
 const bluebtn = document.querySelector("[bluebtn]");
 const redbtn = document.querySelector("[redbtn]");
 const yellowbtn = document.querySelector("[yellowbtn]");
 
-const maxLevel = 8;
+let maxLevel = 8;
 
-const pressTime = 500;  //how long the computer presses the buttons
-const gapTime = 200;    //the gap between the presses 
-const waitTime = 500;   //how long after pressing start does pattern begin
+let pressTime = 500;  //how long the computer presses the buttons
+let gapTime = 200;    //the gap between the presses 
+let waitTime = 500;   //how long after pressing start does pattern begin
 
 let timeouts = [];      //to clear timeouts when game is stopped
 
@@ -25,14 +28,83 @@ let blue = false;       //is the blue button pressed down
 let red = false;        //is the red button pressed down
 let yellow = false;     //is the yellow button pressed down
 
+let easy = false;
+let medium = false;
+let hard = false;
+let crazy = false;
+
 //Audio setup
 let context = new AudioContext();
 let gainNode = context.createGain();
 let oscillator = context.createOscillator();
 gainNode.gain.setValueAtTime(0, context.currentTime);   //set volume to 0
 
-startbtn.addEventListener("click", () => {
-    if(playing == false){
+easybtn.addEventListener("click", () => {
+    if(!easy){
+        if(playing){
+            stopGame();
+        }
+        easy = true;
+        easybtn.classList.toggle("clicked");
+        easybtn.textContent = "Stop";
+        maxLevel = 8;
+        pressTime = 500;
+        gapTime = 200;
+        waitTime = 500;
+        startGame();
+    } else {
+        stopGame();
+    }
+});
+
+mediumbtn.addEventListener("click", () => {
+    if(!medium){
+        if(playing){
+            stopGame();
+        }
+        medium = true;
+        mediumbtn.classList.toggle("clicked");
+        mediumbtn.textContent = "Stop";
+        maxLevel = 12;
+        pressTime = 300;
+        gapTime = 100;
+        waitTime = 300;
+        startGame();
+    } else {
+        stopGame();
+    }
+});
+
+hardbtn.addEventListener("click", () => {
+    if(!hard){
+        if(playing){
+            stopGame();
+        }
+        hard = true;
+        hardbtn.classList.toggle("clicked");
+        hardbtn.textContent = "Stop";
+        maxLevel = 15;
+        pressTime = 150;
+        gapTime = 100;
+        waitTime = 150;
+        startGame();
+    } else{
+        stopGame();
+    }
+});
+
+crazybtn.addEventListener("click", () => {
+    if(!crazy){
+        if(playing){
+            stopGame();
+        }
+        crazy = true;
+        crazybtn.classList.toggle("clicked");
+        crazybtn.textContent = "Stop";
+        maxLevel = 10;
+        pressTime = 50;
+        gapTime = 50;
+        waitTime = 200;
         startGame();
     } else {
         stopGame();
@@ -40,7 +112,6 @@ startbtn.addEventListener("click", () => {
 });
 
 function startGame() {
-    startbtn.textContent = "Stop";
     playing = true;
 
     //reset user input array
@@ -54,7 +125,6 @@ function startGame() {
 }
 
 function stopGame() {
-    startbtn.textContent = "Start";
 
     //stop and reset auio
     oscillator.stop();
@@ -81,6 +151,26 @@ function stopGame() {
     if(yellow){
         yellowbtn.classList.toggle("clicked");
         yellow = false;
+    }
+    if(easy){
+        easy = false;
+        easybtn.classList.toggle("clicked");
+        easybtn.textContent = "Easy";
+    }
+    if(medium){
+        medium = false;
+        mediumbtn.classList.toggle("clicked");
+        mediumbtn.textContent = "Medium";
+    }
+    if(hard){
+        hard = false;
+        hardbtn.classList.toggle("clicked");
+        hardbtn.textContent = "Hard";
+    }
+    if(crazy){
+        crazy = false;
+        crazybtn.classList.toggle("clicked");
+        crazybtn.textContent = "Crazy";
     }
 
     playing = false;  
